@@ -14,7 +14,27 @@
 
 
 window.addEventListener("load", function() {
- //json
+   let planets = [];
+
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
+      response.json().then( function(json) {
+         console.log(json);
+         const missionTargetLine = document.getElementById("missionTarget");
+         //theres multiple objects i have to go through
+      //    missionTargetLine.innerHTML = `
+      //    <h2>Mission Destination</h2>
+      //    <ol>
+      //     <li>Name: ${json.name}</li>
+      //     <li>Diameter: ${json.diameter}</li>
+      //     <li>Star: ${json.star}</li>
+      //     <li>Distance from Earth: ${json.distance}</li>
+      //     <li>Number of Moons: ${json.moons}</li>
+      //    </ol>
+      //    <img src="${json.image}"></img>
+      // `
+   });   
+  });
+ 
 
 
 
@@ -25,6 +45,7 @@ window.addEventListener("load", function() {
    let fuelLevel = document.querySelector("input[name=fuelLevel]");
    let cargoMass = document.querySelector("input[name=cargoMass]");
 
+   let launchStatus = document.getElementById("launchStatus");
    let pilotLine = document.getElementById("pilotStatus");
    let copilotLine = document.getElementById("copilotStatus");
    let fuelLine = document.getElementById("fuelStatus");
@@ -48,6 +69,7 @@ window.addEventListener("load", function() {
          } else {
             console.log('cargo else')
             cargoLine.style.visibility = "visible";
+            cargoLine.innerHTML = "Cargo mass low enough for launch"
             event.preventDefault();
          };
       if (isNaN(fuelLevel.value)) {
@@ -57,10 +79,15 @@ window.addEventListener("load", function() {
          console.log('fuel else if')
          fuelLine.style.visibility = "visible";
          fuelLine.innerHTML = `Fuel Level is too low for launch`;
+         launchStatus.innerHTML = "Shuttle not ready for launch" 
+         launchStatus.style.color = "#a7240d"
          event.preventDefault();
          } else {
             console.log('fuel else')
             fuelLine.style.visibility = "visible";
+            fuelLine.innerHTML = "Fuel level high enough for launch"
+            launchStatus.innerHTML = "Shuttle is ready for launch" 
+            launchStatus.style.color = "#008000"
             event.preventDefault();
          };
       if (!isNaN(copilotName.value)) {
@@ -86,12 +113,7 @@ window.addEventListener("load", function() {
 });
 
 
-// let launchStatus = document.getElementById("launchStatus");
-// launchStatus = "Shuttle not ready for launch" 
-// launchStatus.style.color = "#a7240d"
 
-// let launchStatus = document.getElementById("launchStatus");
-// launchStatus = "Shuttle is ready for launch" 
-// launchStatus.style.color = "#008000"
+
 
 

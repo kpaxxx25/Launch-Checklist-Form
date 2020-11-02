@@ -14,30 +14,26 @@
 
 
 window.addEventListener("load", function() {
-   let planets = [];
-
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
       response.json().then( function(json) {
          console.log(json);
-         const missionTargetLine = document.getElementById("missionTarget");
+         let missionTargetLine = document.getElementById("missionTarget");
+         // let planets = '';
+         // for (planets of json) { 
+            missionTargetLine.innerHTML = ` <h2>Mission Destination</h2>
+            <ol>
+               <li>Name: ${json[3].name}</li>
+               <li>Diameter: ${json[3].diameter}</li>
+               <li>Star: ${json[3].star}</li>
+               <li>Distance from Earth: ${json[3].distance}</li>
+               <li>Number of Moons: ${json[3].moons}</li>
+            </ol>
+            <img src="${json[3].image}">
+             `
+       //  }
     });   
   });
  
-//   function displayPlanets() {
-//    let answers;
-//    for (let i=0; i < questions.length; i++) {
-//        answers = getAnswerOptions(i);
-//        questionArea.innerHTML += `
-//            <div class="q-container">
-//                <p class="q-number">Question ${i+1} <span id="score${i}" class="score">Score goes here!</span></p>
-//                <p class="q-question">${questions[i].question}</p>
-//                    ${answers}
-//                <p class="q-info">${questions[i].category} &nbsp;&bull;&nbsp; ${questions[i].difficulty}</p>
-//            </div>
-//        `
-//    }
-// }
-
 
  document.getElementById("formSubmit").addEventListener("click", function() {
    let form = document.querySelector("form");

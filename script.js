@@ -66,11 +66,16 @@ window.addEventListener("load", function() {
          console.log('cargo else if')
          cargoLine.style.visibility = "visible";
          cargoLine.innerHTML = `Cargo Mass is too high for launch`;
+         // this is not updating 
+         launchStatus.innerHTML = "Shuttle not ready for launch" ;
+         launchStatus.style.color = "#a7240d";
          event.preventDefault();
          } else {
             console.log('cargo else')
             cargoLine.style.visibility = "visible";
-            cargoLine.innerHTML = "Cargo mass low enough for launch"
+            cargoLine.innerHTML = "Cargo mass low enough for launch";
+            launchStatus.innerHTML = "Shuttle is ready for launch" ;
+            launchStatus.style.color = "#008000";
             event.preventDefault();
          };
       if (isNaN(fuelLevel.value)) {
@@ -80,15 +85,15 @@ window.addEventListener("load", function() {
          console.log('fuel else if')
          fuelLine.style.visibility = "visible";
          fuelLine.innerHTML = `Fuel Level is too low for launch`;
-         launchStatus.innerHTML = "Shuttle not ready for launch" 
-         launchStatus.style.color = "#a7240d"
+         launchStatus.innerHTML = "Shuttle not ready for launch" ;
+         launchStatus.style.color = "#a7240d";
          event.preventDefault();
          } else {
             console.log('fuel else')
             fuelLine.style.visibility = "visible";
             fuelLine.innerHTML = "Fuel level high enough for launch"
-            launchStatus.innerHTML = "Shuttle is ready for launch" 
-            launchStatus.style.color = "#008000"
+            launchStatus.innerHTML = "Shuttle is ready for launch" ;
+            launchStatus.style.color = "#008000";
             event.preventDefault();
          };
       if (!isNaN(copilotName.value)) {

@@ -20,22 +20,23 @@ window.addEventListener("load", function() {
       response.json().then( function(json) {
          console.log(json);
          const missionTargetLine = document.getElementById("missionTarget");
-         //theres multiple objects i have to go through
-      //    missionTargetLine.innerHTML = `
-      //    <h2>Mission Destination</h2>
-      //    <ol>
-      //     <li>Name: ${json.name}</li>
-      //     <li>Diameter: ${json.diameter}</li>
-      //     <li>Star: ${json.star}</li>
-      //     <li>Distance from Earth: ${json.distance}</li>
-      //     <li>Number of Moons: ${json.moons}</li>
-      //    </ol>
-      //    <img src="${json.image}"></img>
-      // `
-   });   
+    });   
   });
  
-
+//   function displayPlanets() {
+//    let answers;
+//    for (let i=0; i < questions.length; i++) {
+//        answers = getAnswerOptions(i);
+//        questionArea.innerHTML += `
+//            <div class="q-container">
+//                <p class="q-number">Question ${i+1} <span id="score${i}" class="score">Score goes here!</span></p>
+//                <p class="q-question">${questions[i].question}</p>
+//                    ${answers}
+//                <p class="q-info">${questions[i].category} &nbsp;&bull;&nbsp; ${questions[i].difficulty}</p>
+//            </div>
+//        `
+//    }
+// }
 
 
  document.getElementById("formSubmit").addEventListener("click", function() {

@@ -14,12 +14,11 @@
 
 
 window.addEventListener("load", function() {
+   // i am disapointed that K-PAX is not an option
    fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
       response.json().then( function(json) {
          console.log(json);
          let missionTargetLine = document.getElementById("missionTarget");
-         // let planets = '';
-         // for (planets of json) { 
             missionTargetLine.innerHTML = ` <h2>Mission Destination</h2>
             <ol>
                <li>Name: ${json[3].name}</li>
@@ -30,7 +29,6 @@ window.addEventListener("load", function() {
             </ol>
             <img src="${json[3].image}">
              `
-       //  }
     });   
   });
  
@@ -62,36 +60,40 @@ window.addEventListener("load", function() {
          console.log('cargo else if')
          cargoLine.style.visibility = "visible";
          cargoLine.innerHTML = `Cargo Mass is too high for launch`;
-         // this is not updating 
-         launchStatus.innerHTML = "Shuttle not ready for launch" ;
-         launchStatus.style.color = "#a7240d";
          event.preventDefault();
          } else {
-            console.log('cargo else')
-            cargoLine.style.visibility = "visible";
-            cargoLine.innerHTML = "Cargo mass low enough for launch";
-            launchStatus.innerHTML = "Shuttle is ready for launch" ;
-            launchStatus.style.color = "#008000";
-            event.preventDefault();
+          console.log('cargo else')
+          cargoLine.style.visibility = "visible";
+          cargoLine.innerHTML = "Cargo mass low enough for launch";
+          event.preventDefault();
          };
       if (isNaN(fuelLevel.value)) {
-         alert('Fuel Level must be a number');
-         event.preventDefault();
+            alert('Fuel Level must be a number');
+            event.preventDefault();
        } else if(fuelLevel.value < 10000){
-         console.log('fuel else if')
-         fuelLine.style.visibility = "visible";
-         fuelLine.innerHTML = `Fuel Level is too low for launch`;
-         launchStatus.innerHTML = "Shuttle not ready for launch" ;
-         launchStatus.style.color = "#a7240d";
-         event.preventDefault();
+            console.log('fuel else if')
+            fuelLine.style.visibility = "visible";
+            fuelLine.innerHTML = `Fuel Level is too low for launch`;
+            event.preventDefault();
          } else {
             console.log('fuel else')
             fuelLine.style.visibility = "visible";
             fuelLine.innerHTML = "Fuel level high enough for launch"
-            launchStatus.innerHTML = "Shuttle is ready for launch" ;
-            launchStatus.style.color = "#008000";
             event.preventDefault();
          };
+
+      if (cargoMass.value > 1001 || fuelLevel.value < 10000) {
+         launchStatus.innerHTML = "Shuttle not ready for launch" ;
+         launchStatus.style.color = "#a7240d";
+         event.preventDefault();
+      } else {
+         launchStatus.innerHTML = "Shuttle is ready for launch" ;
+         launchStatus.style.color = "#008000";
+         event.preventDefault();
+      }
+
+
+
       if (!isNaN(copilotName.value)) {
          alert('Copilot must be a name');
          event.preventDefault();
